@@ -26,11 +26,7 @@ class Album extends Component {
          	songList:songList
          }
          
-         
-
-	   
-
-    }
+         }
    
 	render() {
 		return (
