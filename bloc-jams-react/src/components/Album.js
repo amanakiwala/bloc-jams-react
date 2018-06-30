@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-import { Link } from 'react-router-dom';
+
 
 class Album extends Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ class Album extends Component {
                        x.number=index+1;
                        return x;
                  	});
-         console.log(songList);
+         
 
         this.setState.album = {
          	songList:songList
@@ -50,10 +50,10 @@ class Album extends Component {
                	<col id="song-duration-colomn" />
                </colgroup>
                <tbody>
-               {this.setState.album.songList.map((data,idx) => {
+               {this.setState.album.songList.map((song,index) => {
                	    return([
                		
-               		<tr key={idx}>{data.number} {data.title} {data.duration}</tr>
+               		<tr key={index}>{song.number} {song.title} {song.duration}</tr>
                			
                		])
                
