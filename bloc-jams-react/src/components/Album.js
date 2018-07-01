@@ -27,10 +27,14 @@ class Album extends Component {
          	songList:songList
          }
          
+
      }
 
     
-    render() {
+    
+   
+	render() {
+
 		return (
            <section className="album">
              <section id="album-info">
@@ -41,6 +45,7 @@ class Album extends Component {
                  <div id="release-info">{this.state.album.releaseInfo}</div>
                </div>
              </section>
+             
              <table id="song-list">
                <colgroup>
                	<col id="song-number-colomn" />
@@ -54,6 +59,8 @@ class Album extends Component {
                		<tr key={index}>{song.number} {song.title} {song.duration}</tr>
                			
                		])
+               	})
+               }
                
                </tbody>
              	
