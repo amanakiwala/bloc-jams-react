@@ -13,8 +13,8 @@ class Album extends Component {
 	    this.state = {
 	    	album: album,
 	    	currentSong: album.songs[0],
-	    	isPlaying: false
-	    	
+	    	isPlaying: false,
+	    	currentlyHoveredSong: null
 	    };
 
 	    this.audioElement = document.createElement('audio');
@@ -59,10 +59,46 @@ class Album extends Component {
     		this.play();
     	}
     }
+
+    mOver(song){
+    	this.setState({currentlyHoveredSong: song})
+    }
+
+    mOut(song){
+    	this.setState({currentlyHoveredSong: null})
+    }
+
+    renderSong(song, index) {
+    	let songContent = null;
+
+    	if (this.state.isPlaying === true && this.state.currentSong === song) {
+    		songContent = (<span className="ion-pause" ></span>);
+    	} else if(this.state.currentlyHoveredSong === song){
+    		songContent = (<span className="ion-play" ></span>);
+    	}else {
+    		songContent = song.number;
+    	}
+
+    	
+
+    	return([
+
+		       <tr className="song" 
+		           key={index} 
+		           onClick={() => this.handleSongClick(song)} 
+		           onMouseEnter={() => this.mOver(song)}
+		           onMouseLeave={() => this.mOut(song)}>
+		          {songContent}
+		           {song.title} {song.duration}
+		       </tr>
+             
+
+          ])
+    }
     
    
 	render() {
-
+         console.log(this.state.currentlyHoveredSong)
 		return (
            <section className="album">
              <section id="album-info">
@@ -80,15 +116,15 @@ class Album extends Component {
                	<col id="song-title-colomn" />
                	<col id="song-duration-colomn" />
                </colgroup>
+               
+               
                <tbody>
-               {this.setState.album.songList.map((song,index) => {
-               	    return([
-               		
-               		<tr className="song" key={index} onClick={() => this.handleSongClick(song)}>{song.number} {song.title} {song.duration}</tr>
-               			
-               		])
-               	})
-               }
+               
+               {this.setState.album.songList.map(this.renderSong.bind(this))}
+
+
+
+              
                
                </tbody>
              	
