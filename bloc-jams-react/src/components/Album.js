@@ -87,10 +87,7 @@ class Album extends Component {
 		           key={index} 
 		           onClick={() => this.handleSongClick(song)} 
 		           onMouseEnter={() => this.mOver(song)}
-		           onMouseLeave={() => this.mOut(song)}>
-		          {songContent}
-		           {song.title} {song.duration}
-		       </tr>
+		           onMouseLeave={() => this.mOut(song)}><td>{songContent}</td><td>{song.title}</td><td>{song.duration}</td></tr>
              
 
           ])
@@ -109,25 +106,15 @@ class Album extends Component {
                  <div id="release-info">{this.state.album.releaseInfo}</div>
                </div>
              </section>
-             
              <table id="song-list">
                <colgroup>
-               	<col id="song-number-colomn" />
-               	<col id="song-title-colomn" />
-               	<col id="song-duration-colomn" />
+               	<col id="song-number-colomn"/>
+               	<col id="song-title-colomn"/>
+               	<col id="song-duration-colomn"/>
                </colgroup>
-               
-               
                <tbody>
-               
                {this.setState.album.songList.map(this.renderSong.bind(this))}
-
-
-
-              
-               
                </tbody>
-             	
              </table>
            </section>
 			);
