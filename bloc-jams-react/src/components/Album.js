@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 
 
 class Album extends Component {
@@ -60,6 +61,14 @@ class Album extends Component {
     	}
     }
 
+    handlePrevClick() {
+    	const currentIndex = this.state.album.songs.findIndex(song =>this.state.currentSong === song);
+    	const newIndex = Math.max(0, currentIndex - 1);
+    	const newSong = this.state.album.songs[newIndex];
+    	this.setSong(newSong);
+    	this.play();
+    }
+
     mOver(song){
     	this.setState({currentlyHoveredSong: song})
     }
@@ -79,8 +88,6 @@ class Album extends Component {
     		songContent = song.number;
     	}
 
-    	
-
     	return([
 
 		       <tr className="song" 
@@ -91,9 +98,7 @@ class Album extends Component {
 		          {songContent}
 		           {song.title} {song.duration}
 		       </tr>
-             
-
-          ])
+             ])
     }
     
    
@@ -117,18 +122,19 @@ class Album extends Component {
                	<col id="song-duration-colomn" />
                </colgroup>
                
-               
                <tbody>
-               
-               {this.setState.album.songList.map(this.renderSong.bind(this))}
-
-
-
-              
-               
+                {this.setState.album.songList.map(this.renderSong.bind(this))}
                </tbody>
-             	
+             
              </table>
+
+             <PlayerBar 
+                 isPlaying={this.state.isPlaying} 
+                 currentSong={this.state.currentSong}
+                 handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+                 handlePrevClick={() => this.handlePrevClick()}
+                 />
+           
            </section>
 			);
 	}
