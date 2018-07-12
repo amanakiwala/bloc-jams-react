@@ -16,12 +16,14 @@ class Album extends Component {
 	    	currentSong: album.songs[0],
 	    	currentTime: 0,
 	    	duration: album.songs[0].duration,
+	    	
 	    	isPlaying: false,
 	    	currentlyHoveredSong: null
 	    };
 
 	    this.audioElement = document.createElement('audio');
 	    this.audioElement.src = album.songs[0].audioSrc;
+
 
 	    
 	   
@@ -41,22 +43,33 @@ class Album extends Component {
     componentDidMount() {
      	this.eventListeners = {
      		timeupdate: e => {
-     			this.setState({ currentTime: this.audioElement.currentTimen});
+     			this.setState({ currentTime: this.audioElement.currentTime});
      		},
      		durationchange: e => {
      			this.setState({ duration: this.audioElement.duration });
+     		},
+     		volumeupdate: e => {
+     			this.setState({ volumeupdate: this.audioElement.currentVolume});
+     		},
+     		volumechange: e => {
+     			this.setState({ volumechange: this.audioElement.highestVolume});
      		}
+
      	};
      	this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
      	this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+     	this.audioElement.addEventListener('volumeupdate', this.eventListeners.volumeupdate);
+     	this.audioElement.addEventListener('volumechange', this.eventListeners.volumechange);
     }
 
     componentWillUnmount() {
     	this.audioElement.src = null;
     	this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
     	this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+    	this.audioElement.removeEventListener('volumeupdate', this.eventListeners.volumeupdate);
+        this.audioElement.removeEventListener('volumechange', this.eventListeners.volumechange);
     }
-    
+
     play() {
     	this.audioElement.play();
     	this.setState({ isPlaying: true});
@@ -103,6 +116,8 @@ class Album extends Component {
     	this.audioElement.currentTime = newTime;
     	this.setState({ currentTime: newTime });
     }
+
+    
 
     mOver(song){
     	this.setState({currentlyHoveredSong: song})
@@ -174,6 +189,7 @@ class Album extends Component {
                  handlePrevClick={() => this.handlePrevClick()}
                  handleNextClick={() => this.handleNextClick()}
                  handleTimeChange={(e) => this.handleTimeChange(e)}
+                 
                  />
            
            </section>
