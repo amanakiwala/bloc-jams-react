@@ -1,0 +1,29 @@
+.hero-title{
+	font-family: 'Lemon', cursive;
+    font-size:30px;
+    text-shadow: #474747 3px 5px 2px;
+
+}
+
+.point-title{
+	font-family: 'Lemon', cursive;
+    font-size:20px;
+    color:#251652;
+}
+.selling-points{
+	height:500px;
+	width:40%;
+	margin:auto;
+}
+.point{
+	height:150px;
+	width:100%;
+	border:8px ridge #631E52;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+.point-description{
+	font-family: 'Montserrat', sans-serif;
+	color:#443980;
+	padding: 15px;
+}

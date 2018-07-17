@@ -1,0 +1,28 @@
+#album-title{
+	font-size:30px;
+}
+.artist, #release-info{
+	color:#251652;
+}
+#album-info{
+	float:left;
+	margin-left: 50px;
+}
+
+#song-list{
+	float:right;
+	height:300px;
+	width:350px;
+	font-size: 22px;
+	font-family: 'Montserrat', sans-serif;
+	color:#053D9E;
+	margin-right:50px;
+	border-top:6px ridge red ;
+	border-right:6px ridge yellow ;
+	border-bottom:6px ridge green ;
+	border-left:6px ridge blue ;
+	border-collapse: collapse;
+}
+td{
+	border: 3px ridge #342C91 ; 
+}

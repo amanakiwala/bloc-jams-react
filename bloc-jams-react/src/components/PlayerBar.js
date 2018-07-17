@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '.././style/Playbar.css';
 
 class PlayerBar extends Component {
 	render() {
